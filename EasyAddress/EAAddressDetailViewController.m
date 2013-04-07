@@ -41,10 +41,9 @@
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
     
 
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
-                                              initWithTitle:@"Send" style:UIBarButtonItemStyleBordered target:self action:@selector(send:)];
-    
-    
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
+//                                              initWithTitle:@"Send" style:UIBarButtonItemStyleBordered target:self action:@selector(send:)];
+    self.streetTextField.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 }
 
 - (NSString *) getFilePath
@@ -58,16 +57,8 @@
     [super setEditing:flag animated:animated];
     if (self.editing) {
         self.navigationItem.leftBarButtonItem.title = @"Save";
-        self.streetTextField.enabled = YES;
-        self.zipCodeTextField.enabled = YES;
-        self.metroTextField.enabled = YES;
-        self.notesTextField.enabled = YES;
+        [self.streetTextField becomeFirstResponder];
     } else {
-        self.streetTextField.enabled = NO;
-        self.zipCodeTextField.enabled = NO;
-        self.metroTextField.enabled = NO;
-        self.notesTextField.enabled = NO;
-        
         self.address.street = self.streetTextField.text;
         self.address.zipCode = self.zipCodeTextField.text;
         self.address.metro = self.metroTextField.text;
@@ -76,15 +67,33 @@
         if (![self.address isEqual:initialAddress]) {
             [NSKeyedArchiver archiveRootObject:self.address toFile:[self getFilePath]];
         }
-
+        
+        [self displayAddress];
+        [self.view endEditing:YES];
     }
+    BOOL hidden = !self.editing;
+    [self.streetTextField setHidden:hidden];
+    [self.zipCodeTextField setHidden:hidden];
+    [self.metroTextField setHidden:hidden];
+    [self.notesTextField setHidden:hidden];
+    [self.streetLabel setHidden:!hidden];
+    [self.zipCodeLabel setHidden:!hidden];
+    [self.metroLabel setHidden:!hidden];
+    [self.notesLabel setHidden:!hidden];
+}
+
+- (void) displayAddress
+{
+    self.streetLabel.text = self.address.street;
+    self.zipCodeLabel.text = self.address.zipCode;
+    self.metroLabel.text = self.address.metro;
+    self.notesLabel.text = self.address.notes;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.tableView.allowsSelection = NO;
-    hasChanges = NO;
     
     // Load address
     self.address = [NSKeyedUnarchiver unarchiveObjectWithFile:[self getFilePath]];
@@ -97,7 +106,7 @@
     self.zipCodeTextField.text = self.address.zipCode;
     self.metroTextField.text = self.address.metro;
     self.notesTextField.text = self.address.notes;
-    
+    [self displayAddress];
 }
 
 #pragma mark - Table view data source
