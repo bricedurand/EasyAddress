@@ -2,7 +2,7 @@
 //  EAAddress.h
 //  EasyAddress
 //
-//  Created by Brice Durand on 4/5/13.
+//  Created by Brice Durand on 4/7/13.
 //  Copyright (c) 2013 Brice Durand. All rights reserved.
 //
 
@@ -14,5 +14,6 @@
 @property (copy, nonatomic) NSString *zipCode;
 @property (copy, nonatomic) NSString *metro;
 @property (copy, nonatomic) NSString *notes;
+
 
 @end

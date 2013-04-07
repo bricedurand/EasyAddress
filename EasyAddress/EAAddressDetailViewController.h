@@ -9,23 +9,20 @@
 #import <UIKit/UIKit.h>
 
 @class EAAddress;
-@protocol EAAddressDetailViewControllerDelegate;
 
 @interface EAAddressDetailViewController : UITableViewController <UITextFieldDelegate>
 
 @property (copy, nonatomic) EAAddress *address;
-@property (weak, nonatomic) id<EAAddressDetailViewControllerDelegate> delegate;
 @property (assign, nonatomic) NSInteger row;
 @property (strong, nonatomic) NSArray *fieldLabels;
 
-- (IBAction)cancel:(id)sender;
-- (IBAction)save:(id)sender;
+@property (weak, nonatomic) IBOutlet UITextField *streetTextField;
+@property (weak, nonatomic) IBOutlet UITextField *zipCodeTextField;
+@property (weak, nonatomic) IBOutlet UITextField *metroTextField;
+@property (weak, nonatomic) IBOutlet UITextField *notesTextField;
+
+- (IBAction)send:(id)sender;
 - (IBAction)textFieldDone:(id)sender;
 
-@end
 
-
-@protocol EAAddressDetailViewControllerDelegate <NSObject>
-- (void)addressDetailViewController:(EAAddressDetailViewController *)controller
-                   didUpdateAddress:(EAAddress *)address;
 @end

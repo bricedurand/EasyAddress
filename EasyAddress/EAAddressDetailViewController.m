@@ -18,24 +18,18 @@
 #define kLabelTag                     2048
 #define kTextFieldTag                 4094
 
+#define ARCHIVE_FILE_NAME             @"address"
+
 @implementation EAAddressDetailViewController {
-    NSString *initialText;
+    EAAddress *initialAddress;
     BOOL hasChanges;
 }
 
-- (void)cancel:(id)sender
+- (void)send:(id)sender
 {
-    [self.view endEditing:YES];
+    
 }
 
-- (void)save:(id)sender
-{
-    [self.view endEditing:YES];
-    if (hasChanges) {
-        [self.delegate addressDetailViewController:self
-                                  didUpdateAddress:self.address];
-    }
-}
 - (void)textFieldDone:(id)sender
 {
     [sender resignFirstResponder];
@@ -44,120 +38,71 @@
 - (void) awakeFromNib {
     
     // Custom initialization
-    self.fieldLabels = @[@"Street", @"ZipCode", @"Metro", @"Notes"];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]
-                                             initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-                                             target:self
-                                             action:@selector(cancel:)];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
-                                              initWithBarButtonSystemItem:UIBarButtonSystemItemSave
-                                              target:self
-                                              action:@selector(save:)];
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
     
+
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
+                                              initWithTitle:@"Send" style:UIBarButtonItemStyleBordered target:self action:@selector(send:)];
+    
+    
+}
+
+- (NSString *) getFilePath
+{
+    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    return [[paths objectAtIndex:0] stringByAppendingPathComponent:ARCHIVE_FILE_NAME];
+}
+
+- (void)setEditing:(BOOL)flag animated:(BOOL)animated
+{
+    [super setEditing:flag animated:animated];
+    if (self.editing) {
+        self.navigationItem.leftBarButtonItem.title = @"Save";
+        self.streetTextField.enabled = YES;
+        self.zipCodeTextField.enabled = YES;
+        self.metroTextField.enabled = YES;
+        self.notesTextField.enabled = YES;
+    } else {
+        self.streetTextField.enabled = NO;
+        self.zipCodeTextField.enabled = NO;
+        self.metroTextField.enabled = NO;
+        self.notesTextField.enabled = NO;
+        
+        self.address.street = self.streetTextField.text;
+        self.address.zipCode = self.zipCodeTextField.text;
+        self.address.metro = self.metroTextField.text;
+        self.address.notes = self.notesTextField.text;
+        
+        if (![self.address isEqual:initialAddress]) {
+            [NSKeyedArchiver archiveRootObject:self.address toFile:[self getFilePath]];
+        }
+
+    }
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.tableView.allowsSelection = NO;
+    hasChanges = NO;
+    
+    // Load address
+    self.address = [NSKeyedUnarchiver unarchiveObjectWithFile:[self getFilePath]];
+    if (self.address == nil) {
+        self.address = [EAAddress new];
+    }
+    
+    initialAddress = [self.address copy];
+    self.streetTextField.text = self.address.street;
+    self.zipCodeTextField.text = self.address.zipCode;
+    self.metroTextField.text = self.address.metro;
+    self.notesTextField.text = self.address.notes;
+    
 }
 
 #pragma mark - Table view data source
 
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return kNumberOfEditableRows;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc]
-                initWithStyle:UITableViewCellStyleDefault
-                reuseIdentifier:CellIdentifier];
-//        UILabel *label = [[UILabel alloc] initWithFrame:
-//                          CGRectMake(10, 10, 75, 25)];
-//        label.tag = kLabelTag;
-//        label.textAlignment = NSTextAlignmentRight;
-//        label.font = [UIFont boldSystemFontOfSize:14];
-//        [cell.contentView addSubview:label];
-//        UITextField *textField = [[UITextField alloc] initWithFrame:
-//                                  CGRectMake(90, 12, 200, 25)];
-//        textField.tag = kTextFieldTag;
-//        textField.clearsOnBeginEditing = NO;
-//        textField.delegate = self;
-//        textField.returnKeyType = UIReturnKeyDone;
-//        [textField addTarget:self
-//                      action:@selector(textFieldDone:)
-//            forControlEvents:UIControlEventEditingDidEndOnExit];
-//        [cell.contentView addSubview:textField];
-    }
-    
-    UILabel *label = (id)[cell viewWithTag:kLabelTag];
-    label.text = self.fieldLabels[indexPath.row];
-    
-    UITextField *textField = (id)[cell viewWithTag:kTextFieldTag];
-    textField.superview.tag = indexPath.row;
-    switch (indexPath.row) {
-        case kStreetRowIndex:
-            textField.text = self.address.street;
-            break;
-        case kZipCodeRowIndex:
-            textField.text = self.address.zipCode;
-            break;
-        case kMetroRowIndex:
-            textField.text = self.address.metro;
-            break;
-        case kNotesRowIndex:
-            textField.text = self.address.notes;
-            break;
-        default:
-            break;
-    }
-    
-    return cell;
-}
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    initialText = textField.text;
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
-    if (![textField.text isEqualToString:initialText]) {
-        hasChanges = YES;
-        switch (textField.superview.tag) {
-            case kStreetRowIndex:
-                self.address.street = textField.text;
-                break;
-            case kZipCodeRowIndex:
-                self.address.zipCode = textField.text;
-                break;
-            case kMetroRowIndex:
-                self.address.metro = textField.text;
-                break;
-            case kNotesRowIndex:
-                self.address.notes = textField.text;
-                break;
-            default:
-                break;
-        }
-    }
-}
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
 /*
 // Override to support editing the table view.
@@ -173,33 +118,19 @@
 }
 */
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    return NO;
 }
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleNone;
+}
+
 
 @end

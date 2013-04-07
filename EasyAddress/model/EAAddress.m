@@ -2,7 +2,7 @@
 //  EAAddress.m
 //  EasyAddress
 //
-//  Created by Brice Durand on 4/5/13.
+//  Created by Brice Durand on 4/7/13.
 //  Copyright (c) 2013 Brice Durand. All rights reserved.
 //
 
@@ -13,24 +13,38 @@ static NSString * const kAddressZipCode = @"ZipCode";
 static NSString * const kAddressMetro = @"Metro";
 static NSString * const kAddressNotes = @"Notes";
 
+
 @implementation EAAddress
+
+- (BOOL) isEqual:(id)other
+{
+    if (other == self) {
+        return YES;
+    }
+    if (!other || ![other isKindOfClass:[self class]]) {
+        return NO;
+    }
+    EAAddress *otherAddress = (EAAddress *) other;
+    
+    return [self.street isEqual:otherAddress.street] && [self.zipCode isEqual:otherAddress.zipCode] && [self.metro isEqual:otherAddress.metro] && [self.notes isEqual:otherAddress.notes];
+}
 
 #pragma mark - NSCoding
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
-    [coder encodeObject:self.street forKey:kAddressStreet];
-    [coder encodeObject:self.zipCode forKey:kAddressZipCode];
-    [coder encodeObject:self.metro forKey:kAddressMetro];
-    [coder encodeObject:self.notes forKey:kAddressNotes];
+    [encoder encodeObject:self.street forKey:kAddressStreet];
+    [encoder encodeObject:self.zipCode forKey:kAddressZipCode];
+    [encoder encodeObject:self.metro forKey:kAddressMetro];
+    [encoder encodeObject:self.notes forKey:kAddressNotes];
 }
 
-￼- (id)initWithCoder:(NSCoder *)coder
+- (id)initWithCoder:(NSCoder *)decoder
 {
     if (self = [super init]) {
-        self.street = [coder decodeObjectForKey:kAddressStreet];
-        self.zipCode = [coder decodeObjectForKey:kAddressZipCode];
-        self.metro = [coder decodeObjectForKey:kAddressMetro];
-        self.notes = [coder decodeObjectForKey:kAddressNotes];
+        self.street = [decoder decodeObjectForKey:kAddressStreet];
+        self.zipCode = [decoder decodeObjectForKey:kAddressZipCode];
+        self.metro = [decoder decodeObjectForKey:kAddressMetro];
+        self.notes = [decoder decodeObjectForKey:kAddressNotes];
     }
     return self;
 }

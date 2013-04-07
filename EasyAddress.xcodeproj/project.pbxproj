@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		427B3C271712003800ED9606 /* EAAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 427B3C261712003800ED9606 /* EAAddress.m */; };
 		42F35E65170E1DF3003F2BEF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F35E64170E1DF3003F2BEF /* UIKit.framework */; };
 		42F35E67170E1DF3003F2BEF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F35E66170E1DF3003F2BEF /* Foundation.framework */; };
 		42F35E69170E1DF3003F2BEF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F35E68170E1DF3003F2BEF /* CoreGraphics.framework */; };
@@ -21,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		427B3C251712003800ED9606 /* EAAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAAddress.h; sourceTree = "<group>"; };
+		427B3C261712003800ED9606 /* EAAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAAddress.m; sourceTree = "<group>"; };
 		42F35E60170E1DF3003F2BEF /* EasyAddress.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyAddress.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42F35E64170E1DF3003F2BEF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		42F35E66170E1DF3003F2BEF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -35,8 +38,6 @@
 		42F35E78170E1DF3003F2BEF /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		42F35E7A170E1DF3003F2BEF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		42F35E7D170E1DF3003F2BEF /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		42F35E98170EE774003F2BEF /* EAAddress.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EAAddress.h; sourceTree = "<group>"; };
-		42F35E99170EE774003F2BEF /* EAAddress.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EAAddress.m; sourceTree = "<group>"; };
 		42F35E9A170F21A7003F2BEF /* EAAddressDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAAddressDetailViewController.h; sourceTree = "<group>"; };
 		42F35E9B170F21A7003F2BEF /* EAAddressDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAAddressDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -113,8 +114,8 @@
 		42F35E97170EE6F0003F2BEF /* model */ = {
 			isa = PBXGroup;
 			children = (
-				42F35E98170EE774003F2BEF /* EAAddress.h */,
-				42F35E99170EE774003F2BEF /* EAAddress.m */,
+				427B3C251712003800ED9606 /* EAAddress.h */,
+				427B3C261712003800ED9606 /* EAAddress.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -189,6 +190,7 @@
 				42F35E71170E1DF3003F2BEF /* main.m in Sources */,
 				42F35E75170E1DF3003F2BEF /* EAAppDelegate.m in Sources */,
 				42F35E9C170F21A7003F2BEF /* EAAddressDetailViewController.m in Sources */,
+				427B3C271712003800ED9606 /* EAAddress.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
