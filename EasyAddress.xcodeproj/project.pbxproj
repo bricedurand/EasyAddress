@@ -17,7 +17,7 @@
 		42F35E79170E1DF3003F2BEF /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 42F35E78170E1DF3003F2BEF /* Default@2x.png */; };
 		42F35E7B170E1DF3003F2BEF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 42F35E7A170E1DF3003F2BEF /* Default-568h@2x.png */; };
 		42F35E7E170E1DF3003F2BEF /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42F35E7C170E1DF3003F2BEF /* MainStoryboard.storyboard */; };
-		42F35E81170E1DF3003F2BEF /* EAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F35E80170E1DF3003F2BEF /* EAViewController.m */; };
+		42F35E9C170F21A7003F2BEF /* EAAddressDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F35E9B170F21A7003F2BEF /* EAAddressDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,8 +35,10 @@
 		42F35E78170E1DF3003F2BEF /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		42F35E7A170E1DF3003F2BEF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		42F35E7D170E1DF3003F2BEF /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		42F35E7F170E1DF3003F2BEF /* EAViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EAViewController.h; sourceTree = "<group>"; };
-		42F35E80170E1DF3003F2BEF /* EAViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EAViewController.m; sourceTree = "<group>"; };
+		42F35E98170EE774003F2BEF /* EAAddress.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EAAddress.h; sourceTree = "<group>"; };
+		42F35E99170EE774003F2BEF /* EAAddress.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EAAddress.m; sourceTree = "<group>"; };
+		42F35E9A170F21A7003F2BEF /* EAAddressDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAAddressDetailViewController.h; sourceTree = "<group>"; };
+		42F35E9B170F21A7003F2BEF /* EAAddressDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAAddressDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,12 +85,13 @@
 		42F35E6A170E1DF3003F2BEF /* EasyAddress */ = {
 			isa = PBXGroup;
 			children = (
+				42F35E97170EE6F0003F2BEF /* model */,
 				42F35E73170E1DF3003F2BEF /* EAAppDelegate.h */,
 				42F35E74170E1DF3003F2BEF /* EAAppDelegate.m */,
 				42F35E7C170E1DF3003F2BEF /* MainStoryboard.storyboard */,
-				42F35E7F170E1DF3003F2BEF /* EAViewController.h */,
-				42F35E80170E1DF3003F2BEF /* EAViewController.m */,
 				42F35E6B170E1DF3003F2BEF /* Supporting Files */,
+				42F35E9A170F21A7003F2BEF /* EAAddressDetailViewController.h */,
+				42F35E9B170F21A7003F2BEF /* EAAddressDetailViewController.m */,
 			);
 			path = EasyAddress;
 			sourceTree = "<group>";
@@ -105,6 +108,15 @@
 				42F35E7A170E1DF3003F2BEF /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		42F35E97170EE6F0003F2BEF /* model */ = {
+			isa = PBXGroup;
+			children = (
+				42F35E98170EE774003F2BEF /* EAAddress.h */,
+				42F35E99170EE774003F2BEF /* EAAddress.m */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,7 +188,7 @@
 			files = (
 				42F35E71170E1DF3003F2BEF /* main.m in Sources */,
 				42F35E75170E1DF3003F2BEF /* EAAppDelegate.m in Sources */,
-				42F35E81170E1DF3003F2BEF /* EAViewController.m in Sources */,
+				42F35E9C170F21A7003F2BEF /* EAAddressDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +305,7 @@
 				42F35E86170E1DF3003F2BEF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
