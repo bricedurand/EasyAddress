@@ -16,12 +16,6 @@
 @property (assign, nonatomic) NSInteger row;
 @property (strong, nonatomic) NSArray *fieldLabels;
 
-@property (weak, nonatomic) IBOutlet UILabel *streetLabel;
-@property (weak, nonatomic) IBOutlet UILabel *zipCodeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *metroLabel;
-@property (weak, nonatomic) IBOutlet UILabel *notesLabel;
-
-
 @property (weak, nonatomic) IBOutlet UITextField *streetTextField;
 @property (weak, nonatomic) IBOutlet UITextField *zipCodeTextField;
 @property (weak, nonatomic) IBOutlet UITextField *metroTextField;

@@ -55,6 +55,12 @@
 - (void)setEditing:(BOOL)flag animated:(BOOL)animated
 {
     [super setEditing:flag animated:animated];
+    
+    self.streetTextField.enabled = self.editing;
+    self.zipCodeTextField.enabled = self.editing;
+    self.metroTextField.enabled = self.editing;
+    self.notesTextField.enabled = self.editing;
+    
     if (self.editing) {
         self.navigationItem.leftBarButtonItem.title = @"Save";
         [self.streetTextField becomeFirstResponder];
@@ -68,27 +74,10 @@
             [NSKeyedArchiver archiveRootObject:self.address toFile:[self getFilePath]];
         }
         
-        [self displayAddress];
         [self.view endEditing:YES];
     }
-    BOOL hidden = !self.editing;
-    [self.streetTextField setHidden:hidden];
-    [self.zipCodeTextField setHidden:hidden];
-    [self.metroTextField setHidden:hidden];
-    [self.notesTextField setHidden:hidden];
-    [self.streetLabel setHidden:!hidden];
-    [self.zipCodeLabel setHidden:!hidden];
-    [self.metroLabel setHidden:!hidden];
-    [self.notesLabel setHidden:!hidden];
 }
 
-- (void) displayAddress
-{
-    self.streetLabel.text = self.address.street;
-    self.zipCodeLabel.text = self.address.zipCode;
-    self.metroLabel.text = self.address.metro;
-    self.notesLabel.text = self.address.notes;
-}
 
 - (void)viewDidLoad
 {
@@ -106,7 +95,6 @@
     self.zipCodeTextField.text = self.address.zipCode;
     self.metroTextField.text = self.address.metro;
     self.notesTextField.text = self.address.notes;
-    [self displayAddress];
 }
 
 #pragma mark - Table view data source
