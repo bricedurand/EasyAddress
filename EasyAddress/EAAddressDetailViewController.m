@@ -25,50 +25,6 @@
     BOOL hasChanges;
 }
 
-- (void)send:(id)sender
-{
-//    ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
-//    picker.peoplePickerDelegate = self;
-//    // Display only a person's phone, email, and birthdate
-//    NSArray *displayedItems = [NSArray arrayWithObject:[NSNumber numberWithInt:kABPersonPhoneProperty]];
-//    
-//    
-//    picker.displayedProperties = displayedItems;
-    // Show the picker
-//    [self presentModalViewController:picker animated:YES];
-    
-    MFMessageComposeViewController *controller = [MFMessageComposeViewController new];
-	if([MFMessageComposeViewController canSendText])
-	{
-		controller.body = @"Hello from Mugunth";
-		controller.recipients = [NSArray arrayWithObjects:@"12345678", @"87654321", nil];
-		controller.messageComposeDelegate = self;
-		[self presentModalViewController:controller animated:YES];
-	}
-    
-    controller.delegate = self;
-}
-
-- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
-{
-	switch (result) {
-		case MessageComposeResultCancelled:
-			NSLog(@"Cancelled");
-			break;
-		case MessageComposeResultFailed:
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"MyApp" message:@"Unknown Error" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-//			[alert show];
-			break;
-		case MessageComposeResultSent:
-            
-			break;
-		default:
-			break;
-	}
-    
-	[self dismissModalViewControllerAnimated:YES];
-}
-
 - (void)textFieldDone:(id)sender
 {
     [sender resignFirstResponder];
@@ -167,6 +123,60 @@
 {
     return UITableViewCellEditingStyleNone;
 }
+
+#pragma mark - Messaging
+
+- (void)send:(id)sender
+{
+    //    ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
+    //    picker.peoplePickerDelegate = self;
+    //    // Display only a person's phone, email, and birthdate
+    //    NSArray *displayedItems = [NSArray arrayWithObject:[NSNumber numberWithInt:kABPersonPhoneProperty]];
+    //
+    //
+    //    picker.displayedProperties = displayedItems;
+    // Show the picker
+    //    [self presentModalViewController:picker animated:YES];
+    
+    
+    
+    MFMessageComposeViewController *controller = [MFMessageComposeViewController new];
+	if([MFMessageComposeViewController canSendText])
+	{
+		controller.body = [self getMessageBody];
+		controller.messageComposeDelegate = self;
+		[self presentModalViewController:controller animated:YES];
+	}
+    
+    controller.delegate = self;
+}
+
+- (NSString *) getMessageBody
+{
+    NSString *mapsLink = [NSString stringWithFormat:@"https://maps.google.com/?q=%@+%@", self.address.street, self.address.zipCode];
+    return [mapsLink stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+}
+
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
+{
+	switch (result) {
+		case MessageComposeResultCancelled:
+			NSLog(@"Cancelled");
+			break;
+		case MessageComposeResultFailed:
+            //            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"MyApp" message:@"Unknown Error" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            //			[alert show];
+			break;
+		case MessageComposeResultSent:
+            
+			break;
+		default:
+			break;
+	}
+    
+	[self dismissModalViewControllerAnimated:YES];
+}
+
 
 
 @end
