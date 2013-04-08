@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		427B3C271712003800ED9606 /* EAAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 427B3C261712003800ED9606 /* EAAddress.m */; };
+		427B3C2D1712277B00ED9606 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427B3C2C1712277A00ED9606 /* MessageUI.framework */; };
+		427B3C3317122CF500ED9606 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427B3C3217122CF500ED9606 /* AddressBookUI.framework */; };
+		427B3C3517122D3400ED9606 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427B3C3417122D3400ED9606 /* AddressBook.framework */; };
 		42F35E65170E1DF3003F2BEF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F35E64170E1DF3003F2BEF /* UIKit.framework */; };
 		42F35E67170E1DF3003F2BEF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F35E66170E1DF3003F2BEF /* Foundation.framework */; };
 		42F35E69170E1DF3003F2BEF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F35E68170E1DF3003F2BEF /* CoreGraphics.framework */; };
@@ -24,6 +27,9 @@
 /* Begin PBXFileReference section */
 		427B3C251712003800ED9606 /* EAAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAAddress.h; sourceTree = "<group>"; };
 		427B3C261712003800ED9606 /* EAAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAAddress.m; sourceTree = "<group>"; };
+		427B3C2C1712277A00ED9606 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		427B3C3217122CF500ED9606 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		427B3C3417122D3400ED9606 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		42F35E60170E1DF3003F2BEF /* EasyAddress.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyAddress.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42F35E64170E1DF3003F2BEF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		42F35E66170E1DF3003F2BEF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -47,6 +53,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				427B3C3517122D3400ED9606 /* AddressBook.framework in Frameworks */,
+				427B3C3317122CF500ED9606 /* AddressBookUI.framework in Frameworks */,
+				427B3C2D1712277B00ED9606 /* MessageUI.framework in Frameworks */,
 				42F35E65170E1DF3003F2BEF /* UIKit.framework in Frameworks */,
 				42F35E67170E1DF3003F2BEF /* Foundation.framework in Frameworks */,
 				42F35E69170E1DF3003F2BEF /* CoreGraphics.framework in Frameworks */,
@@ -76,6 +85,9 @@
 		42F35E63170E1DF3003F2BEF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				427B3C3417122D3400ED9606 /* AddressBook.framework */,
+				427B3C3217122CF500ED9606 /* AddressBookUI.framework */,
+				427B3C2C1712277A00ED9606 /* MessageUI.framework */,
 				42F35E64170E1DF3003F2BEF /* UIKit.framework */,
 				42F35E66170E1DF3003F2BEF /* Foundation.framework */,
 				42F35E68170E1DF3003F2BEF /* CoreGraphics.framework */,

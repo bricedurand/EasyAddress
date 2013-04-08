@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
+#import <AddressBookUI/AddressBookUI.h>
 
 @class EAAddress;
 
-@interface EAAddressDetailViewController : UITableViewController <UITextFieldDelegate>
+@interface EAAddressDetailViewController : UITableViewController <UITextFieldDelegate, MFMessageComposeViewControllerDelegate>
 
 @property (copy, nonatomic) EAAddress *address;
 @property (assign, nonatomic) NSInteger row;
