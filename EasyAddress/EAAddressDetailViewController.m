@@ -31,9 +31,7 @@
     // Custom initialization
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
     
-
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
-                                              initWithTitle:@"Send" style:UIBarButtonItemStyleBordered target:self action:@selector(send:)];
+    [self hideSendButton:NO];
     self.streetTextField.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 }
 
@@ -41,6 +39,12 @@
 {
     NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     return [[paths objectAtIndex:0] stringByAppendingPathComponent:ARCHIVE_FILE_NAME];
+}
+
+- (void) hideSendButton:(BOOL) hidden
+{
+    self.navigationItem.rightBarButtonItem = hidden ? nil : [[UIBarButtonItem alloc]
+                                                             initWithTitle:@"Send" style:UIBarButtonItemStyleBordered target:self action:@selector(send:)];
 }
 
 - (void)setEditing:(BOOL)flag animated:(BOOL)animated
@@ -51,6 +55,7 @@
     self.cityTextField.enabled = self.editing;
     self.metroTextField.enabled = self.editing;
     self.notesTextField.enabled = self.editing;
+    [self hideSendButton: self.editing];
     
     if (self.editing) {
         self.navigationItem.leftBarButtonItem.title = @"Save";
