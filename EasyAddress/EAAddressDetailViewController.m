@@ -88,6 +88,21 @@
     self.notesTextField.text = self.address.notes;
 }
 
+#pragma mark - UITextFieldDelegate
+-(BOOL)textFieldShouldReturn:(UITextField*)textField;
+{
+    if (textField == self.streetTextField) {
+       [self.cityTextField becomeFirstResponder];
+    } else if (textField == self.cityTextField) {
+        [self.metroTextField becomeFirstResponder];
+    } else if (textField == self.metroTextField) {
+        [self.notesTextField becomeFirstResponder];
+    } else {
+        [textField resignFirstResponder];
+    }
+    return NO;
+}
+
 #pragma mark - Table view data source
 
 
