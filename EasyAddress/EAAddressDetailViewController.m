@@ -10,10 +10,6 @@
 #import "EAAddress.h"
 
 #define kNumberOfEditableRows         4
-#define kStreetRowIndex               0
-#define kZipCodeRowIndex              1
-#define kMetroRowIndex                2
-#define kNotesRowIndex                3
 
 #define kLabelTag                     2048
 #define kTextFieldTag                 4094
@@ -52,7 +48,7 @@
     [super setEditing:flag animated:animated];
     
     self.streetTextField.enabled = self.editing;
-    self.zipCodeTextField.enabled = self.editing;
+    self.cityTextField.enabled = self.editing;
     self.metroTextField.enabled = self.editing;
     self.notesTextField.enabled = self.editing;
     
@@ -61,7 +57,7 @@
         [self.streetTextField becomeFirstResponder];
     } else {
         self.address.street = self.streetTextField.text;
-        self.address.zipCode = self.zipCodeTextField.text;
+        self.address.city = self.cityTextField.text;
         self.address.metro = self.metroTextField.text;
         self.address.notes = self.notesTextField.text;
         
@@ -87,7 +83,7 @@
     
     initialAddress = [self.address copy];
     self.streetTextField.text = self.address.street;
-    self.zipCodeTextField.text = self.address.zipCode;
+    self.cityTextField.text = self.address.city;
     self.metroTextField.text = self.address.metro;
     self.notesTextField.text = self.address.notes;
 }
@@ -153,8 +149,11 @@
 
 - (NSString *) getMessageBody
 {
-    NSString *mapsLink = [NSString stringWithFormat:@"https://maps.google.com/?q=%@+%@", self.address.street, self.address.zipCode];
-    return [mapsLink stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    NSString *body = [self.address description];
+    NSString *mapsLink = [NSString stringWithFormat:@"https://maps.google.com/?q=%@+%@", self.address.street, self.address.city];
+    [mapsLink stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    
+    return [NSString stringWithFormat:@"%@. %@ %@",body, mapsLink, @"Sent via Easy Address app"];
 }
 
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result

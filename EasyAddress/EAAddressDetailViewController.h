@@ -19,7 +19,7 @@
 @property (strong, nonatomic) NSArray *fieldLabels;
 
 @property (weak, nonatomic) IBOutlet UITextField *streetTextField;
-@property (weak, nonatomic) IBOutlet UITextField *zipCodeTextField;
+@property (weak, nonatomic) IBOutlet UITextField *cityTextField;
 @property (weak, nonatomic) IBOutlet UITextField *metroTextField;
 @property (weak, nonatomic) IBOutlet UITextField *notesTextField;
 

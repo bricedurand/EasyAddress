@@ -11,7 +11,7 @@
 @interface EAAddress : NSObject <NSCoding, NSCopying>
 
 @property (copy, nonatomic) NSString *street;
-@property (copy, nonatomic) NSString *zipCode;
+@property (copy, nonatomic) NSString *city;
 @property (copy, nonatomic) NSString *metro;
 @property (copy, nonatomic) NSString *notes;
 

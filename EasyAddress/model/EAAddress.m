@@ -9,12 +9,17 @@
 #import "EAAddress.h"
 
 static NSString * const kAddressStreet = @"Street";
-static NSString * const kAddressZipCode = @"ZipCode";
+static NSString * const kAddressCity = @"City";
 static NSString * const kAddressMetro = @"Metro";
 static NSString * const kAddressNotes = @"Notes";
 
 
 @implementation EAAddress
+
+- (NSString *)description
+{
+     return [NSString stringWithFormat:@"%@, %@. %@. %@", self.street,self.city,self.metro,self.notes];
+}
 
 - (BOOL) isEqual:(id)other
 {
@@ -26,14 +31,14 @@ static NSString * const kAddressNotes = @"Notes";
     }
     EAAddress *otherAddress = (EAAddress *) other;
     
-    return [self.street isEqual:otherAddress.street] && [self.zipCode isEqual:otherAddress.zipCode] && [self.metro isEqual:otherAddress.metro] && [self.notes isEqual:otherAddress.notes];
+    return [self.street isEqual:otherAddress.street] && [self.city isEqual:otherAddress.city] && [self.metro isEqual:otherAddress.metro] && [self.notes isEqual:otherAddress.notes];
 }
 
 #pragma mark - NSCoding
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
     [encoder encodeObject:self.street forKey:kAddressStreet];
-    [encoder encodeObject:self.zipCode forKey:kAddressZipCode];
+    [encoder encodeObject:self.city forKey:kAddressCity];
     [encoder encodeObject:self.metro forKey:kAddressMetro];
     [encoder encodeObject:self.notes forKey:kAddressNotes];
 }
@@ -42,7 +47,7 @@ static NSString * const kAddressNotes = @"Notes";
 {
     if (self = [super init]) {
         self.street = [decoder decodeObjectForKey:kAddressStreet];
-        self.zipCode = [decoder decodeObjectForKey:kAddressZipCode];
+        self.city = [decoder decodeObjectForKey:kAddressCity];
         self.metro = [decoder decodeObjectForKey:kAddressMetro];
         self.notes = [decoder decodeObjectForKey:kAddressNotes];
     }
@@ -54,7 +59,7 @@ static NSString * const kAddressNotes = @"Notes";
 {
     EAAddress *copy = [[EAAddress alloc] init];
     copy.street = self.street;
-    copy.zipCode = self.zipCode;
+    copy.city = self.city;
     copy.metro = self.metro;
     copy.notes = self.notes;
     return copy;
