@@ -91,6 +91,11 @@
     self.cityTextField.text = self.address.city;
     self.metroTextField.text = self.address.metro;
     self.notesTextField.text = self.address.notes;
+    
+    if ([self.address.street length] == 0) {
+        [self.navigationItem.leftBarButtonItem.target performSelector:self.navigationItem.leftBarButtonItem.action];
+    }
+
 }
 
 #pragma mark - UITextFieldDelegate
