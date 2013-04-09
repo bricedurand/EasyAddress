@@ -30,7 +30,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="4094" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="fPZ-O7-j2n">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="fPZ-O7-j2n">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="VDc-VV-JEA"/>
                                                         <constraint firstAttribute="width" constant="178" id="cRG-X6-m4t"/>
@@ -75,7 +75,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="4094" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="5x6-Ep-2K7">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="5x6-Ep-2K7">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="178" id="6AQ-dr-UFD"/>
                                                         <constraint firstAttribute="height" constant="30" id="flh-Bj-GBK"/>
@@ -118,7 +118,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="4094" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="51t-1d-dgf">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="51t-1d-dgf">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="178" id="Gx2-G5-M6n"/>
                                                         <constraint firstAttribute="height" constant="30" id="wrB-Eh-cTw"/>
@@ -161,7 +161,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="4094" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8MA-P3-OqY">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8MA-P3-OqY">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="178" id="36o-sa-Mh0"/>
                                                         <constraint firstAttribute="height" constant="30" id="O5s-zO-ypB"/>
@@ -190,10 +190,10 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Address" id="q6s-tk-c6u"/>
                     <connections>
+                        <outlet property="cityTextField" destination="5x6-Ep-2K7" id="ivO-za-1qc"/>
                         <outlet property="metroTextField" destination="51t-1d-dgf" id="zYU-dx-yqW"/>
                         <outlet property="notesTextField" destination="8MA-P3-OqY" id="Wc4-C8-8dn"/>
                         <outlet property="streetTextField" destination="fPZ-O7-j2n" id="T57-6k-nfm"/>
-                        <outlet property="zipCodeTextField" destination="5x6-Ep-2K7" id="pZi-bk-h6y"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Cn-qT-7Bc" userLabel="First Responder" sceneMemberID="firstResponder"/>

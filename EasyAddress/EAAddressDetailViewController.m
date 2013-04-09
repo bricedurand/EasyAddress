@@ -151,9 +151,9 @@
 {
     NSString *body = [self.address description];
     NSString *mapsLink = [NSString stringWithFormat:@"https://maps.google.com/?q=%@+%@", self.address.street, self.address.city];
-    [mapsLink stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    mapsLink = [mapsLink stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     
-    return [NSString stringWithFormat:@"%@. %@ %@",body, mapsLink, @"Sent via Easy Address app"];
+    return [NSString stringWithFormat:@"%@. %@\n%@",body, mapsLink, @"[Sent via Easy Address app]"];
 }
 
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
